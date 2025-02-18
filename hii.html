@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lusion-like Experience</title>
+  <!-- Importing React and ReactDOM -->
+  <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+
+  <!-- Importing Three.js and GSAP -->
+  <script src="https://unpkg.com/three@0.133.0/build/three.min.js"></script>
+  <script src="https://unpkg.com/@react-three/fiber@8.0.0/dist/react-three-fiber.min.js"></script>
+  <script src="https://unpkg.com/@react-three/drei@8.0.0/dist/drei.min.js"></script>
+  <script src="https://unpkg.com/gsap@3.9.1/dist/gsap.min.js"></script>
+
+  <!-- Tailwind CSS CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.1.2/dist/tailwind.min.css" rel="stylesheet">
+
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      background-color: black;
+    }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script type="text/javascript">
+    // React Component
+    const { useEffect } = React;
+    const { Canvas } = ReactThreeFiber;
+    const { OrbitControls, Sphere, MeshDistortMaterial } = Drei;
+
+    function App() {
+      useEffect(() => {
+        gsap.fromTo("#hero-text", { opacity: 0, y: 50 }, { opacity: 1, y: 0, duration: 1.5 });
+      }, []);
+
+      return (
+        <div className="h-screen w-full flex items-center justify-center bg-black relative">
+          <Canvas className="absolute top-0 left-0 w-full h-full">
+            <ambientLight intensity={0.5} />
+            <directionalLight position={[2, 5, 2]} intensity={1} />
+            <Sphere args={[1, 100, 100]} scale={2} position={[0, 0, 0]}>
+              <MeshDistortMaterial
+                color="hotpink"
+                attach="material"
+                distort={0.5}
+                speed={2}
+              />
+            </Sphere>
+            <OrbitControls enableZoom={false} />
+          </Canvas>
+          <h1 id="hero-text" className="text-white text-4xl font-bold absolute">
+            Welcome to Lusion-like Experience
+          </h1>
+        </div>
+      );
+    }
+
+    // Rendering the App component
+    ReactDOM.createRoot(document.getElementById('root')).render(React.createElement(App));
+  </script>
+</body>
+</html>
