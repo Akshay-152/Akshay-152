@@ -143,13 +143,13 @@
 
 
  
-  const msg2 = `@"${product.images[0]}"`;
+  const msg2 = `@"${product.images[1]}"`;
 
         const encodedMsg2 = encodeURIComponent(msg2);
   
   
 
-        const targetURL = `https://onlinech0t.blogspot.com/?m=0&message=${encodedMsg}=${{encodedMsg2}`;
+        const targetURL = `https://onlinech0t.blogspot.com/?m=0&message=${encodedMsg2}`;
         const card = document.createElement("div");
         card.className = "product-card";
         card.style.position = "relative";
