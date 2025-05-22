@@ -140,6 +140,15 @@
       productList.forEach((product, index) => {
         const msg = `Hi! I'm interested in "${product.name}" priced at ₹${product.price}, id = ${product.link}.`;
         const encodedMsg = encodeURIComponent(msg);
+
+
+ 
+  const msg2 = `@"${product.images[0]}"`;
+
+        const encodedMsg = encodeURIComponent(msg2);
+  
+  
+
         const targetURL = `https://onlinech0t.blogspot.com/?m=0&message=${encodedMsg}`;
         const card = document.createElement("div");
         card.className = "product-card";
