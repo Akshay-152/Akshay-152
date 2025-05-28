@@ -142,14 +142,25 @@
         const encodedMsg = encodeURIComponent(msg);
 
 
- 
-  const msg2 = `@"${product.images[1]}"`;
+ const msg1 = `@${product.images[1]}.`;
+
+  const msg2 = `Hi! I'm interested in "${product. name}" priced at ${product.price} id=${product.link}.`;
+
+
+const encodedMsg1 = encodeURIComponent(msg1);
+  
 
         const encodedMsg2 = encodeURIComponent(msg2);
   
   
 
+const targetURL = `https://onlinech0t.blogspot.com/?m=0&message=${encodedMsg1}`;
+
+
         const targetURL = `https://onlinech0t.blogspot.com/?m=0&message=${encodedMsg2}`;
+
+
+
         const card = document.createElement("div");
         card.className = "product-card";
         card.style.position = "relative";
