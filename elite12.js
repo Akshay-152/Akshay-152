@@ -1,8 +1,8 @@
-// Toggle Menu
+// Toggle menu
 function toggleMenu(event) {
   event.stopPropagation();
-  const menu = document.getElementById("menuDropdown");
-  const overlay = document.getElementById("overlay");
+  var menu = document.getElementById("menuDropdown");
+  var overlay = document.getElementById("overlay");
   const button = event.target;
 
   menu.classList.toggle("show");
@@ -11,10 +11,11 @@ function toggleMenu(event) {
   button.textContent = button.textContent === '☰' ? '✕' : '☰';
 }
 
+// Close Dropdown Menu
 function closeMenu() {
-  const menu = document.getElementById("menuDropdown");
-  const overlay = document.getElementById("overlay");
-  const menuButton = document.querySelector(".menu-button");
+  var menu = document.getElementById("menuDropdown");
+  var overlay = document.getElementById("overlay");
+  var menuButton = document.querySelector(".menu-button");
 
   if (menu.classList.contains("show")) {
     menu.classList.remove("show");
@@ -24,8 +25,8 @@ function closeMenu() {
   }
 }
 
-// Scroll to Top Button
-window.onscroll = () => {
+// Scroll To Top Button
+window.onscroll = function () {
   const btn = document.getElementById("goTopBtn");
   btn.style.display = (document.documentElement.scrollTop > 100) ? "block" : "none";
 };
@@ -34,32 +35,33 @@ function scrollToTop() {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-// Image Viewer
-window.changeImage = (index, newSrc) => {
+// Change Product Image
+function changeImage(index, newSrc) {
   document.getElementById(`mainImage${index}`).src = newSrc;
-};
+}
 
-// About Section
+// About Section Toggle
 function showAbout(event) {
-  event.preventDefault();
   document.getElementById('about-section').style.display = 'block';
+  event.preventDefault();
 }
 
 function hideAbout() {
   document.getElementById('about-section').style.display = 'none';
 }
 
-// Authentication Handling
-window.showAuthForm = () => {
+// Authentication Form Toggle
+window.showAuthForm = function () {
   document.getElementById("upload-form").classList.add("hidden");
   document.getElementById("auth-form").classList.remove("hidden");
 };
 
-window.closeAuthForm = () => {
+window.closeAuthForm = function () {
   document.getElementById("auth-form").classList.add("hidden");
 };
 
-window.authenticate = () => {
+// Authentication Logic
+window.authenticate = function () {
   const username = document.getElementById("username").value.trim();
   const password = document.getElementById("password").value.trim();
   if (username === password && userMap[username]) {
@@ -71,7 +73,7 @@ window.authenticate = () => {
   }
 };
 
-// Firebase Setup
+// Firebase Configuration
 const firebaseConfig = {
   apiKey: "AIzaSyBfDB2Ca3Sb1mHuPN50i4nRzHFL_dgzpRA",
   authDomain: "message-792de.firebaseapp.com",
@@ -81,17 +83,20 @@ const firebaseConfig = {
   appId: "1:346450288358:web:101992db1ca1de3af3e527",
   measurementId: "G-W7Q8K6B202"
 };
+
+// Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
-
 let products = [];
 let currentCollection = "";
+
+// Map of User Credentials
 const userMap = {
   "1234": "products",
   "123456": "product2"
 };
 
-// Utility: Shuffle Array
+// Shuffle Helper
 function shuffle(array) {
   for (let i = array.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
@@ -100,27 +105,30 @@ function shuffle(array) {
   return array;
 }
 
-// Prioritize Premium/Top Products
+// Priority Product Sort
 function applyPriorityAndRandomOrder(allProducts) {
-  const prioritized = [], remaining = [];
+  const prioritized = [];
+  const remaining = [];
   allProducts.forEach(p => {
-    const isPriority = (p.name && p.name.toLowerCase().includes("premium")) || (p.link && p.link.toLowerCase().includes("top"));
-    (isPriority ? prioritized : remaining).push(p);
+    if ((p.name && p.name.toLowerCase().includes("premium")) ||
+        (p.link && p.link.toLowerCase().includes("top"))) {
+      prioritized.push(p);
+    } else {
+      remaining.push(p);
+    }
   });
   return [...prioritized, ...shuffle(remaining)];
 }
 
-// Render Product Cards
+// Render Products
 function renderProducts(container, productList) {
   container.innerHTML = "";
   productList.forEach((product, index) => {
-    const msg1 = `@${product.images[1]}.`;
-    const msg2 = `Hi! I'm interested in "${product.name}" priced at ₹${product.price}, id = ${product.link}.`;
-    const encodedMsg = `${encodeURIComponent(msg1)}%0A${encodeURIComponent(msg2)}`;
+    const encodedMsg = encodeURIComponent(`Hi! I'm interested in "${product.name}" priced at ₹${product.price}, id = ${product.link}.`);
     const targetURL = `https://onlinech0t.blogspot.com/?m=0&message=${encodedMsg}`;
-
     const card = document.createElement("div");
     card.className = "product-card";
+    card.style.position = "relative";
     card.innerHTML = `
       <img id="mainImage${index}" class="product-img" src="${product.images[0]}" alt="${product.name}" onclick="zoomImage(this.src)">
       <h2>${product.name}</h2>
@@ -135,35 +143,45 @@ function renderProducts(container, productList) {
   });
 }
 
-// Load All Products from All Collections
+// Load Products from Firestore
 function loadProducts() {
-  const fetches = Object.values(userMap).map(col =>
+  const allCollections = Object.values(userMap);
+  const fetches = allCollections.map(col =>
     db.collection(col).get().then(snap => snap.docs.map(doc => doc.data()))
   );
-
   Promise.all(fetches).then(results => {
     products = applyPriorityAndRandomOrder(results.flat());
     renderProducts(document.getElementById("productGrid"), products);
   });
 }
 
-// Upload New Product
+// Upload Product
 window.uploadProduct = async function () {
   const name = document.getElementById("name").value;
   const price = parseFloat(document.getElementById("price").value);
-  const images = ["image1", "image2", "image3"].map(id => document.getElementById(id).value);
+  const images = [
+    document.getElementById("image1").value,
+    document.getElementById("image2").value,
+    document.getElementById("image3").value
+  ];
   let link = document.getElementById("link").value;
-
   if (!name || !price || !link || images.some(img => img === "")) {
     alert("Please fill all fields.");
     return;
   }
 
-  let finalLink = link, exists = true, attempts = 0;
+  let finalLink = link;
+  let exists = true;
+  let attempts = 0;
+
   while (exists) {
-    const snapshot = await db.collection(currentCollection).where("link", "==", finalLink).get();
-    if (snapshot.empty) exists = false;
-    else finalLink = link + (0.001 * ++attempts).toFixed(3);
+    const querySnapshot = await db.collection(currentCollection).where("link", "==", finalLink).get();
+    if (querySnapshot.empty) {
+      exists = false;
+    } else {
+      attempts += 1;
+      finalLink = link + (0.001 * attempts).toFixed(3);
+    }
   }
 
   db.collection(currentCollection).add({ name, price, images, link: finalLink })
@@ -177,25 +195,28 @@ window.uploadProduct = async function () {
     });
 };
 
-// Debounce Helper
+// Load Products on Page Load
+loadProducts();
+
+// Debounce Function
 function debounce(func, wait) {
   let timeout;
-  return function (...args) {
+  return function executedFunction(...args) {
     clearTimeout(timeout);
-    timeout = setTimeout(() => func.apply(this, args), wait);
+    timeout = setTimeout(() => func(...args), wait);
   };
 }
 
-// Search Input Handler
-const searchInput = document.getElementById("search-input");
-searchInput.addEventListener("input", debounce(function () {
-  const query = this.value.trim().toLowerCase();
+// Search Functionality
+document.getElementById("search-input").addEventListener("input", debounce(function () {
+  const query = document.getElementById("search-input").value.trim().toLowerCase();
   const productGrid = document.getElementById("productGrid");
   const otherGrid = document.getElementById("otherProductGrid");
   const noResults = document.getElementById("noResults");
   const otherContainer = document.getElementById("otherProducts");
 
-  let filtered = [], others = [];
+  let filtered = [];
+  let others = [];
 
   if (query === "") {
     renderProducts(productGrid, products);
@@ -212,7 +233,8 @@ searchInput.addEventListener("input", debounce(function () {
   } else if (query.includes("between")) {
     const nums = query.match(/\d+/g);
     if (nums && nums.length >= 2) {
-      const [min, max] = nums.map(Number);
+      const min = parseFloat(nums[0]);
+      const max = parseFloat(nums[1]);
       filtered = products.filter(p => p.price >= min && p.price <= max);
       others = products.filter(p => p.price < min || p.price > max);
     }
@@ -239,5 +261,17 @@ searchInput.addEventListener("input", debounce(function () {
   otherContainer.style.display = "block";
 }, 300));
 
-// Load products on page start
-loadProducts();
+// Lazy Load Product Images
+document.addEventListener('DOMContentLoaded', function () {
+  const images = document.querySelectorAll('.product-img');
+  const observer = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const img = entry.target;
+        img.src = img.dataset.src || img.src;
+        observer.unobserve(img);
+      }
+    });
+  });
+  images.forEach(img => observer.observe(img));
+});
