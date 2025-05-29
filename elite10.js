@@ -138,27 +138,23 @@
     function renderProducts(container, productList) {
       container.innerHTML = "";
       productList.forEach((product, index) => {
-        const msg = `Hi! I'm interested in "${product.name}" priced at ₹${product.price}, id = ${product.link}.`;
-        const encodedMsg = encodeURIComponent(msg);
+        
 
+const msg1 = `@${product.images[1]}.`;
+const msg2 = `Hi! I'm interested in "${product.name}" priced at ₹${product.price}, id = ${product.link}.`;
 
- const msg1 = `@${product.images[1]}.`;
-
-  const msg2 = `Hi! I'm interested in "${product. name}" priced at ${product.price} id=${product.link}.`;
-
-
+// Encode the messages
 const encodedMsg1 = encodeURIComponent(msg1);
-  
+const encodedMsg2 = encodeURIComponent(msg2);
 
-        const encodedMsg2 = encodeURIComponent(msg2);
-  
-  
+// Combine both if needed
+const finalMessage = `${encodedMsg1}%0A${encodedMsg2}`; // %0A is newline
 
-const targetURL = `https://onlinech0t.blogspot.com/?m=0&message=${encodedMsg1}`;
+// Final target URL
+const targetURL = `https://onlinech0t.blogspot.com/?m=0&message=${finalMessage}`;
 
-
-        const targetURL = `https://onlinech0t.blogspot.com/?m=0&message=${encodedMsg2}`;
-
+// Now you can use this URL for redirection or linking
+window.location.href = targetURL;
 
 
         const card = document.createElement("div");
