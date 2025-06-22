@@ -1,0 +1,1096 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Akshay PK - Portfolio</title>
+  
+   <link rel="icon" type="image/jpg" href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgQsz4QLvN3fWvxnDCTTrM3crfoAa780Z1palWd9pbvE9g-qyL2v-1ZcmxsGhDiYpLYTcLLijLzHk3kaFfGMmIONbVtDUE28dTEScL8N3zyaweuZSHYKFpmLZMHG1rO7VM_XHPvp5O2qXAhpf9MsbMjWzFOV6vdp71epWn2nwPCNHjYsuLeQHNn3m-d-k0/s626/img2.jpg">
+  
+  
+  
+
+<!-- Font Awesome CDN for icons -->
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  
+  
+  
+  
+
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+  
+     <!-- Link CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Akshay-152/akshay/ai.css">
+  
+  
+
+
+<!-- Link JavaScript 
+  
+  
+  
+<script src="https://cdn.jsdelivr.net/gh/Akshay-152/ai/aijs.js"></script>
+  
+ <script src="https://cdn.jsdelivr.net/gh/Akshay-152/ai/ai2.js"></script> 
+  
+ <script src="https://cdn.jsdelivr.net/gh/Akshay-152/akshay/ai4.js"></script>
+ -->
+  
+  <script src="https://cdn.jsdelivr.net/gh/Akshay-152/akshay/disabled.js"></script>
+
+ 
+
+ 
+
+    <style>
+
+        /* Global Styles */
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; scroll-behavior: smooth; }
+
+        body { background: #121212; color: white; overflow-x: hidden;  padding-bottom: 120px; 
+           -webkit-user-select: none;
+
+  -ms-user-select: none;
+
+  user-select: none;
+
+/* Ensures chatbot doesn’t overlap content */}
+
+        .hidden { opacity: 0; transform: translateY(20px); transition: 1s ease-in-out; }
+
+        .show { opacity: 1; transform: translateY(0); }
+
+        /* Navbar */
+
+       .navbar { display: flex; justify-content: space-between; align-items: center; padding: 12px 24px; position: fixed; width: 100%; top: 0; background: #1a1a1a; transition: 0.4s; 
+          
+
+
+            
+          z-index: 1000; }
+
+        .logo { font-size: 1.5rem; font-weight: bold; }
+      
+      
+      .navbar.scrolled {
+
+            background: #000;
+
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+
+        }
+      
+      
+      /* Scroll Progress Bar */
+
+        .progress-bar {
+
+            position: fixed;
+
+            top: 0;
+
+            left: 0;
+
+            height: 4px;
+
+            background: #00bcd4;
+
+            width: 0%;
+
+            z-index: 100;
+
+        }
+      
+      
+
+        .menu-btn { font-size: 1.8rem; cursor: pointer; display: block; }
+
+        .nav-menu { display: none; position: absolute; right: 20px; top: 60px; background: #222; padding: 15px; border-radius: 5px; }
+
+        .nav-menu a { display: block; color: white; text-decoration: none; padding: 10px; transition: 0.3s; }
+
+        .nav-menu a:hover { color: #00bcd4; }
+
+        .show-menu { display: block; }
+
+        /* Hero Section */
+
+        .hero { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; background: linear-gradient(45deg, #1a1a1a, #222, #333); }
+
+        h1 { font-size: 3rem; }
+
+        .btn { background: #00bcd4; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; margin-top: 10px; display: inline-block; }
+      
+      
+
+        .btn:hover { background: #0097a7; }
+
+        /* Sections */
+
+        section { padding: 60px 20px; text-align: center; }
+
+        .skills, .projects { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
+      
+       /* profile img */
+
+             .profileimg-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .profileimg-photo {
+            width: 150px; /* Set the width of the profile photo */
+            height: 150px; /* Set the height of the profile photo */
+            border-radius: 50%; /* Make the image round */
+            transition: all 0.3s ease; /* Smooth transition for hover effect */
+            box-shadow: 0 0 0 rgba(0, 0, 0, 0); /* Initial shadow */
+        }
+      
+        .profileimg-photo:hover {
+            transform: scale(1.1); 
+
+    box-shadow: 0 0 20px rgb(77, 184, 255); 
+
+  
+        }
+      
+        /* Skills */
+
+        .skill-container { max-width: 600px; margin: auto;  z-index: -1;}
+
+        .skill { margin: 15px 0; text-align: left; }
+
+        .skill span { font-size: 18px; font-weight: bold; display: block; margin-bottom: 5px;  }
+
+        .skill-bar { width: 100%; background: #555; height: 10px; border-radius: 5px; overflow: hidden; }
+
+        .progress { height: 100%; background: #00bcd4; border-radius: 5px; width: 0; transition: width 1.5s ease-in-out; }
+
+      
+              /* Portfolio */
+
+.projects { 
+
+    display: flex; 
+
+    gap: 20px; 
+
+    justify-content: center; 
+
+    flex-wrap: wrap; 
+
+    max-width: 800px; 
+
+    margin: auto; 
+
+    transition: box-shadow 0.3s ease; 
+  
+
+}
+
+.project { 
+
+    width: 250px; 
+
+    padding: 20px; 
+
+    background: #1a1a1a; 
+
+    border-radius: 5px; 
+
+    transition: 0.3s; 
+
+    text-align: center; 
+  
+
+}
+
+.project:hover { 
+
+    transform: scale(1.1); 
+
+    box-shadow: 0 0 20px rgb(77, 184, 255); 
+  
+  
+  
+
+}
+     
+        /* Contact Form */
+
+        form input, form textarea { width: 100%; padding: 10px; margin: 10px 0; border: none; border-radius: 5px; }
+
+        form button { background: #00bcd4; color: white; padding: 10px; border: none; cursor: pointer; }
+
+        form button:hover { background: #0097a7; }
+
+        #status { margin-top: 10px; font-weight: bold; }
+
+      .typing-container { 
+
+            font-size: 2.5rem; 
+
+            font-weight: bold; 
+
+            white-space: nowrap;
+
+            overflow: hidden;
+
+            border-right: 3px solid white;
+
+            width: 0;
+
+            display: inline-block;
+
+            animation: typing 2.5s steps(30, end) forwards, blink 0.6s 5 alternate;
+
+        }
+
+        .blue-text { 
+
+            color: #00bcd4; 
+
+        }
+
+        @keyframes typing { 
+
+            from { width: 0; } 
+
+            to { width: 100%; } 
+
+        }
+      
+      @keyframes blink { 
+
+            50% { border-color: transparent; } 
+
+        }
+      
+      
+      
+        .sec{
+            background-color: rgb(31, 31, 32);
+        }
+ 
+      /* Footer Styling */
+
+.footer {
+
+    background: #112;
+
+    color: white;
+
+    padding: 40px 10%;
+
+    text-align: center;
+
+}
+
+.footer-container {
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+    justify-content: space-between;
+
+    gap: 10px;
+
+    text-align: left;
+
+}
+      
+.footer-section {
+
+    flex: 1;
+
+    min-width: 250px;
+
+}
+
+.footer-section h3 {
+
+    color: cyan;
+
+    margin-bottom: 15px;
+
+}
+
+.footer-section p {
+
+    font-size: 14px;
+
+    line-height: 1.5;
+
+    opacity: 0.8;
+
+}
+
+.footer-section ul {
+
+    list-style: none;
+
+    padding: 0;
+
+}      
+      
+      
+.footer-section ul li {
+
+    margin: 8px 0;
+
+}
+
+.footer-section ul li a {
+
+    text-decoration: none;
+
+    color: white;
+
+    opacity: 0.7;
+
+    transition: 0.3s;
+
+}
+
+.footer-section ul li a:hover {
+
+    color: cyan;
+
+    opacity: 1;
+
+    text-decoration: underline;
+
+}    
+      
+      
+ /* Contact Icons */
+
+.contact-icons {
+
+    display: flex;
+
+    gap: 10px;
+
+    justify-content: start;
+
+    margin-top: 10px;
+
+}
+
+/* Image Icons - Small Size */
+
+.contact-icon img {
+
+    width: 30px;
+
+    height: 30px;
+
+    border-radius: 50%;
+
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+
+}     
+      
+      
+/* Hover Effects */
+
+.contact-icon img:hover {
+
+    transform: scale(1.1);
+
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.4);
+
+}
+
+/* Footer Bottom */
+
+.footer hr {
+
+    border: none;
+
+    height: 1px;
+
+    background: #555;
+
+    margin: 20px 0;
+
+}
+
+.footer-credit {
+
+    font-size: 14px;
+
+    opacity: 0.7;
+
+}      
+      
+      
+      
+      
+   /* Scroll container */
+.wrapperBox {
+  width: 95%;
+  max-width: 850px;
+  padding: 20px;
+ 
+}
+
+.sliderTrack {
+  display: flex;
+  
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  width: 100%;
+  border-radius: 10px;
+  overflow-x: auto;
+
+  
+}
+
+.scrollPanel {
+  flex: 0 0 100%;
+  scroll-snap-align: center;
+  padding: 40px 20px;
+  background-color: #1e293b;
+  border-radius: 12px;
+  margin-right: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.5);
+  transition: background 0.4s;
+}
+
+.scrollPanel:nth-child(even) {
+  background-color: #273549;
+}
+
+.slideContent {
+  max-width: 600px;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.5s ease;
+}
+
+.visiblePanel .slideContent {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+
+.scoreItem {
+  margin: 10px 0;
+  font-size: 17px;
+}
+
+.scoreItem strong {
+  color: #ffffff;
+}  
+      
+  .cen{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+        
+    </style>
+
+</head>
+
+<body>
+
+   <!-- Scroll Progress Bar -->
+
+    <div class="progress-bar"></div>
+  
+
+       <!-- Navbar -->
+
+    <nav class="navbar" >
+
+        <div class="logo">Akshay PK</div>
+
+        <div class="menu-btn" onclick="toggleMenu()">☰</div>
+
+        <div class="nav-menu" id="menu">
+          
+<a href="#">Home</a>
+            <a href="#about">About</a>
+
+            <a href="#skills">Skills</a>
+
+            <a href="#portfolio">Projects</a>
+
+            <a href="#contact">Contact</a>
+
+        </div>
+
+    </nav>
+
+  
+    <!-- Hero Section -->
+
+    <header class="hero" >
+
+      
+       <div class="profileimg-container">
+          
+        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhbiENb19fMCCOrc-ShcGbzU14pmCVViwEEsqNGNyr0YUJKj0y2MusP1w-sN8asc5pU9M83-sUhOYGkExCm9S1eVHzo2-NTw7V7DrrwqiSn6_b4ORmea6zhMBH1kfNoUPQfs_K1WZ43DVTDUgv1RXwC9oQSjgobrxHVkZH_bukj0bf4ISVMJn7gxJjvYGU/s1600/me.jpg" alt="Profile Photo" class="profileimg-photo">
+            
+            <br>
+    </div>
+         
+      <br>
+        <div class="typing-container">
+          
+
+        Hi, I am <span class="blue-text">Akshay PK...</span>
+
+    </div>
+      
+        <p>Full Stack Developer | UI/UX Designer</p>
+
+        <a href="#about" class="btn">Hire Me</a>
+
+    </header>
+
+    <!-- About Section -->
+  <div align="center">
+   
+
+    <section id="about" class="hidden">
+
+        <h2>About Me</h2><br>
+
+        <p>I am a passionate full-stack developer with expertise in modern web technologies and design.</p>
+      
+      
+ <div class="cen">      
+<div class="wrapperBox">
+
+  <div class="sliderTrack" id="scrollTrack">
+
+    <div class="scrollPanel">
+
+      <div class="slideContent">
+
+        <h2>My School Journey</h2><br>
+
+        <p>I studied from 1st to 10th at <strong>GVHSS Meenchandha</strong>, which laid my strong academic foundation.</p>
+
+      </div>
+
+    </div>
+
+    <div class="scrollPanel">
+
+      <div class="slideContent">
+
+        <h2>School Achievements</h2><br>
+
+        <p>I was an <strong>SPC member</strong>, scored <strong>full A+</strong> in SSLC, and practiced <strong>palm leaf crafting and got First in state level </strong>.</p>
+
+      </div>
+
+    </div>
+
+    <div class="scrollPanel">
+
+      <div class="slideContent">
+
+        <h2>Higher Secondary</h2><br>
+
+        <p>I joined <strong>St. Joseph’s Boys HSS, Kozhikode</strong> through general merit in the <strong>CS stream</strong>.</p>
+
+      </div>
+
+    </div>
+              
+      
+    <div class="scrollPanel">
+
+      <div class="slideContent">
+
+        <h2>Leadership & Grades</h2><br>
+
+        <p>Served as <strong>NSS Leader (2023–2025)</strong> and earned <strong>Full A+</strong> in Plus One.</p>
+
+      </div>
+
+    </div>
+    
+    
+     <div class="scrollPanel">
+
+      <div class="slideContent">
+
+        <h2>Passions That Define Me</h2><br>
+
+        <p><strong>Playing</strong> keyboard and guitar, <strong>reading</strong> manga and manhwa, <strong>focusing</strong> on self-improvement, <strong>studying</strong>, and <strong>coding</strong> websites.</p>
+
+      </div>
+
+    </div>   
+    
+    
+    
+    
+    
+
+  </div>
+
+</div>
+
+      </div>
+
+    </section>
+  
+  </div>
+  
+  
+  
+    
+  
+  
+  
+  
+  
+ 
+
+    <!-- Skills Section -->
+
+    <section id="skills" class="hidden">
+
+            
+    
+        <h2>My Skills</h2><br>
+
+        <div class="skill-container">
+
+            <div class="skill">
+
+                <span>HTML & CSS</span>
+
+                <div class="skill-bar"><div class="progress" style="width: 90%;"></div></div>
+
+            </div>
+
+            <div class="skill">
+
+                <span>JavaScript</span>
+
+                <div class="skill-bar"><div class="progress" style="width: 85%;"></div></div>
+
+            </div>
+
+            <div class="skill">
+
+                <span>React & Node.js</span>
+
+                <div class="skill-bar"><div class="progress" style="width: 50%;"></div></div>
+
+            </div>
+
+        </div>
+
+    </section>
+    
+  
+  
+<!-- Portfolio Section -->
+
+<section id="portfolio" class="hidden">
+
+    <h2>My Projects</h2><br>
+
+    <div class="projects">
+
+        <div class="project">
+          
+          
+          
+
+
+            <h3>My Another Web Page</h3>
+
+            <p>A fully functional webpage I created.</p>
+
+            <button class="btn" onclick="window.open(' https://xkshaypk.blogspot.com/?m=0', '_blank')">View Project</button>
+
+        </div>
+
+        <div class="project">
+
+            <h3>Gaming Account Seller Web Page</h3>
+
+            <p>A platform to sell gaming accounts.</p>
+
+            <button class="btn" onclick=
+                    "window.open('https://ffaccountseller.blogspot.com/?m=0', '_blank')">View Project</button>
+
+        </div>
+
+        <div class="project">
+
+            <h3>Clothing Brand Model Web Page</h3>
+
+            <p>A stylish website for a clothing brand.</p>
+
+
+          
+           <button class="btn" onclick="window.open('https://eelitefashions.blogspot.com/?m=0', '_blank')">View Project </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+  </div>
+       
+
+    <!-- Contact Section -->
+	
+   <div class="sec">
+    <section id="contact">
+
+        <h2>Contact Me</h2><br>
+
+        <form id="contact-form">
+
+           <input type="text"  id="name" placeholder="Your Name" required>
+
+            <input type="" id="email" placeholder="Your Email" required>
+
+            <textarea id="message" placeholder="Your Message" required></textarea>
+
+            <button class="btn" type="submit">Send Message</button>
+
+        </form>
+
+        <p id="status"></p>
+
+    </section>
+   
+     
+
+
+    <!-- Footer -->
+
+<footer class="footer">
+
+    <div class="footer-container">
+
+        <!-- Quick Links -->
+
+        <div class="footer-section">
+
+            <h3>Quick Links</h3>
+
+            <ul>
+
+                <li><a href="#">Home</a></li>
+
+                <li><a href="#about">About Me</a></li>
+
+                <li><a href="#portfolio">Projects</a></li>
+
+                <li><a href="#contact">Contact</a></li>
+
+            </ul>
+
+        </div>
+      
+      
+ <!-- About Section -->
+
+        <div class="footer-section">
+
+            <h3>About Me</h3>
+
+            <p>I'm Akshay PK, passionate about technology, art, and innovation. I love creating impactful digital experiences.</p>
+
+        </div>
+
+        <!-- Contact Section -->
+
+        <div class="footer-section">
+
+            <h3>Contact Me</h3>
+          
+          
+          
+          
+
+            <div class="contact-icons">
+
+  <a href="https://www.instagram.com/x_kshay?igsh=MWgwNDhpZ2Zyc2RxeQ==" class="contact-icon" target="_blank">
+
+    <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram" />
+
+  </a>
+
+  <a href="https://twitter.com/yourprofile" class="contact-icon" target="_blank">
+
+    <img src="https://cdn-icons-png.flaticon.com/512/733/733579.png" alt="Twitter" />
+
+  </a>
+
+  <a href="https://www.facebook.com/share/1C7demCNsx/" class="contact-icon" target="_blank">
+
+    <img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook" />
+
+  </a>
+
+  <a href="https://wa.me/qr/STUMGREAGOFTF1" class="contact-icon" target="_blank">
+
+    <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp" />
+
+  </a>
+
+</div>
+          
+          
+          
+          
+      
+  </div>
+
+    </div>
+
+    <hr>
+
+    <p class="footer-credit">&copy; 2025 Akshay. All Rights Reserved.</p>
+
+</footer>    
+      
+     
+  
+       <!-- Floating Chatbot Button --
+<button id="chatbotIcon" onclick="toggleChatbot()">💬</button>
+
+<!-- Chatbot Container --
+<div id="chatbotContainer">
+    <div id="chatbotHeader">
+        AI Chatbot
+        <button id="closeChatbot" onclick="toggleChatbot()">✖</button>
+    </div>
+   <div id="chatArea"><font color="#4587f9"><center><b>AKS ANYTHING</b>
+    </center></font></div>
+    <div id="chatInput">
+        <input type="text" id="userInput" placeholder="Type here..." onkeyup="handleEnter(event)">
+        <button id="sendBtn" onclick="sendMessage()">Send</button>
+    </div>
+</div> -->
+
+  
+    <script>
+      
+      
+    
+      
+       // Toggle Menu
+
+        function toggleMenu() {
+
+            document.getElementById("menu").classList.toggle("show-menu");
+
+        }
+      
+      // Navbar Scroll Effect
+
+        window.addEventListener("scroll", () => {
+
+            document.querySelector(".navbar").classList.toggle("scrolled", window.scrollY > 50);
+
+            document.querySelector(".progress-bar").style.width = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100 + "%";
+
+        });
+      
+      
+
+    
+      
+
+      
+    // Initialize EmailJS
+
+emailjs.init("R5fiZwXWHd-HVJZvH");
+
+document.getElementById("contact-form").addEventListener("submit", function(e) {
+
+    e.preventDefault();
+
+    let name = document.getElementById("name").value.trim();
+
+    let email = document.getElementById("email").value.trim();
+
+    let userMessage = document.getElementById("message").value.trim();
+
+    let status = document.getElementById("status");
+
+    if (!name || !email || !userMessage) {
+
+        status.innerHTML = "❗ Please fill all fields!";
+
+        status.style.color = "orange";
+
+        return;
+
+    }
+
+    // Combine all into a single message
+
+    let finalMessage = `Name: ${name}\nEmail: ${email}\nMessage:\n${userMessage}`;
+
+    // Send only the combined message
+
+    emailjs.send("service_nw86mo4", "template_7ygva7d", {
+
+        message: finalMessage
+
+    }).then(() => {
+
+        status.innerHTML = "✅ Message Sent Successfully!";
+
+        status.style.color = "green";
+
+        document.getElementById("contact-form").reset();
+
+    }).catch(error => {
+
+        status.innerHTML = "❌ Error sending message!";
+
+        status.style.color = "red";
+
+        console.error("EmailJS error:", error);
+
+    });
+
+});  
+      
+      
+      
+      
+      
+      
+      
+
+        // Reveal animations
+
+        const hiddenElements = document.querySelectorAll('.hidden');
+
+        window.addEventListener('scroll', () => {
+
+            hiddenElements.forEach(el => {
+
+                if (el.getBoundingClientRect().top < window.innerHeight - 100) {
+
+                    el.classList.add('show');
+
+                }
+
+            });
+
+        });
+      
+      
+      
+  
+      
+      
+      
+      
+      
+      
+  
+      
+    
+const scrollTrack = document.getElementById('scrollTrack');
+
+const scrollPanels = document.querySelectorAll('.scrollPanel');
+
+let panelIndex = 0;
+
+let scrollDirection = 1;
+
+function goToPanel(delta) {
+
+  panelIndex += delta;
+
+  if (panelIndex >= scrollPanels.length) {
+
+    panelIndex = scrollPanels.length - 2;
+
+    scrollDirection = -1;
+
+  } else if (panelIndex < 0) {
+
+    panelIndex = 1;
+
+    scrollDirection = 1;
+
+  }
+
+  const panelWidth = scrollPanels[panelIndex].offsetWidth + 20; // include margin
+
+  scrollTrack.scrollTo({
+
+    left: panelWidth * panelIndex,
+
+    behavior: 'smooth'
+
+  });
+  
+  
+}
+
+// Reveal panels with fade effect
+
+const revealObserver = new IntersectionObserver(entries => {
+
+  entries.forEach(entry => {
+
+    if (entry.isIntersecting) {
+
+      entry.target.classList.add('visiblePanel');
+
+    }
+
+  });
+
+}, { threshold: 0.3 });
+
+scrollPanels.forEach(panel => revealObserver.observe(panel));
+
+// Auto-scroll every 10 seconds (only inside the scroll container)
+
+setInterval(() => {
+
+  goToPanel(scrollDirection);
+
+}, 10000);
+      
+      
+
+    </script>
+
+</body>
+
+</html>
+
